@@ -26,7 +26,7 @@
   <a href="https://www.youtube.com/channel/UCvA2HFoV9vxUWPRm54ENsbg" target="_blank">
     <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
   </a>
-  <a href="https://instagram.com/danielctlima" target="_blank">
+  <a href="https://instagram.com/danieelcaze" target="_blank">
     <img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white">
   </a>
   <a href="https://discordapp.com/users/244853538507718657/" target="_blank">
@@ -35,13 +35,6 @@
   <a href = "mailto:danielctlima@gmail.com" target="_blank">
     <img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white">
   </a>
-  <a href="https://www.linkedin.com/in/daniel-lima-8ba45a1a4/" target="_blank">
+  <a href="https://www.linkedin.com/in/danieelcaze/" target="_blank">
     <img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white">
   </a>
-  
-  ## ⚙ Github analytics
-
-  <div>
-    <img height="150em" src="https://github-readme-stats.vercel.app/api?username=danielcaze&count_private=true&show_icons=true&theme=synthwave">
-    <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=danielcaze&layout=compact&theme=synthwave&langs_count=6">
-  </div>
