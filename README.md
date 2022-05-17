@@ -16,8 +16,11 @@
   <img alt="Dan-HTML" height="30px" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
   <img alt="Dan-CSS" height="30px" width="30px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
   <img alt="Dan-JS" height="30px" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+  <img alt="Dan-React" height="30px" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
   <img alt="Dan-Node" height="30px" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg">
   <img alt="Dan-Figma" height="30px" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg">
+  
+          
  </div>
   
   ## 📱 Contact
@@ -38,3 +41,6 @@
   <a href="https://www.linkedin.com/in/danieelcaze/" target="_blank">
     <img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white">
   </a>
+ <a href="https://wa.me/5583988979997">
+    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
+ </a>
