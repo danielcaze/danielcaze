@@ -8,6 +8,10 @@
 
 - 👨‍🎓 Computer Science student at [Unipê](https://www.unipe.edu.br)
 
+- 💜 I’m passionate about Design and Front-end
+ 
+- 💻 I seek to learn more and more about front-end and back-end
+
 - 👨‍💻 All of my projects are available on [My Repository](https://github.com/danielcaze?tab=repositories)
 
  ## 🚀 Techs
