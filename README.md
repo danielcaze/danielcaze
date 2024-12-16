@@ -2,13 +2,9 @@
 <img align="center" src="https://64.media.tumblr.com/7931e97031b430d11b23dfb4a5ca6713/df1a98e7c47a2bff-70/s640x960/26aef91dd548ae2cb09903fe25908ed14d13f267.gifv" width="1000px">
 <h1 align="center">Hello World 👋, I'm Daniel Cazé</h1>
 
-- 🌱 I’m currently studying Web Development
+- 🌱 I’m working as a Full Stack Engineer
 
-- 👨‍🎓 Computer Science student at [Unipê](https://www.unipe.edu.br)
-
-- 💜 I’m passionate about Design and Front-end
- 
-- 💻 I seek to learn more and more about front-end and back-end
+- 👨‍🎓 Computer Science Bachelor
 
 - 👨‍💻 All of my projects are available on [My Repository](https://github.com/danielcaze?tab=repositories)
 
@@ -44,6 +40,6 @@
   <a href="https://www.linkedin.com/in/danieelcaze/" target="_blank">
     <img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white">
   </a>
- <a href="https://wa.me/5583988979997">
+ <a href="https://wa.me/5583987979997">
     <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
  </a>
