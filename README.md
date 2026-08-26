@@ -28,7 +28,7 @@ API + Groq Whisper, fully serverless. (WIP — paused on a phone-number blocker.
 
 ### stack
 
-`TypeScript` `Next.js` `NestJS` `Go` `Angular` `React Native` `PostgreSQL` `MySQL` `Docker` `AWS` `Azure`
+`TypeScript` `Next.js` `NestJS` `Go` `Angular` `React Native` `PostgreSQL` `MySQL` `Docker` `AWS` `Azure` `GCP`
 
 ### reach me
 
