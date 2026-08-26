@@ -45,15 +45,15 @@ text, tspan {white-space: pre;}
 <tspan x="400" y="190" class="cc">. </tspan><tspan class="key">Frameworks.Frontend</tspan>:<tspan class="cc"> ... </tspan><tspan class="value">Next.js, Angular, React Native</tspan>
 <tspan x="400" y="210" class="cc">. </tspan><tspan class="key">Frameworks.Backend</tspan>:<tspan class="cc"> ............................ </tspan><tspan class="value">NestJS</tspan>
 <tspan x="400" y="230" class="cc">. </tspan><tspan class="key">Databases</tspan>:<tspan class="cc"> .......................... </tspan><tspan class="value">PostgreSQL, MySQL</tspan>
-<tspan x="400" y="250" class="cc">. </tspan><tspan class="key">Infra</tspan>:<tspan class="cc"> ............................. </tspan><tspan class="value">Docker, AWS, Azure</tspan>
+<tspan x="400" y="250" class="cc">. </tspan><tspan class="key">Infra</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Docker, AWS, Azure, GCP</tspan>
 <tspan x="400" y="270" class="cc">. </tspan><tspan class="key">Languages.Real</tspan>:<tspan class="cc"> ................... </tspan><tspan class="value">Portuguese, English</tspan>
 <tspan x="400" y="310" class="cc">. </tspan><tspan class="key">Hobbies</tspan>:<tspan class="cc"> ..................... </tspan><tspan class="value">Surfing, Music, Exercise</tspan>
 <tspan x="400" y="350">- Contact</tspan> ----------------------------------------------
 <tspan x="400" y="370" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> ................................. </tspan><tspan class="value">daniel-caze</tspan>
 <tspan x="400" y="390" class="cc">. </tspan><tspan class="key">Email</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">danielcazedev@gmail.com</tspan>
 <tspan x="400" y="430">- GitHub Stats</tspan> -----------------------------------------
-<tspan x="400" y="450" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">0</tspan> {<tspan class="key">Contributed</tspan>: <tspan class="value">30</tspan>}<tspan class="cc">  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">0</tspan>
-<tspan x="400" y="470" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">0</tspan><tspan class="cc">                  |  </tspan><tspan class="key">Followers</tspan>:<tspan class="cc"> ...... </tspan><tspan class="value">0</tspan>
-<tspan x="400" y="490" class="cc">. </tspan><tspan class="key">Lines of Code</tspan>:<tspan class="cc"> ......................... </tspan><tspan class="value">0</tspan> ( <tspan class="add">0</tspan><tspan class="add">++</tspan>, <tspan class="del">0</tspan><tspan class="del">--</tspan> )
+<tspan x="400" y="450" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc">   ...... </tspan><tspan class="value">59</tspan><tspan class="cc">  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> ....................... </tspan><tspan class="value">1</tspan>
+<tspan x="400" y="470" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ... </tspan><tspan class="value">2,677</tspan><tspan class="cc">  |  </tspan><tspan class="key">Followers</tspan>:<tspan class="cc"> .................. </tspan><tspan class="value">34</tspan>
+<tspan x="400" y="490" class="cc">. </tspan><tspan class="key">Lines of Code</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">289,180</tspan> ( <tspan class="add">498,358</tspan><tspan class="add">++</tspan>, <tspan class="del">209,178</tspan><tspan class="del">--</tspan> )
 </text>
 </svg>

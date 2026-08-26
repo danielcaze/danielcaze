@@ -12,9 +12,9 @@
 
 ### what I do
 
-Fullstack engineer building production web apps and APIs, plus AI-powered automation
-pipelines (LLM integrations, transcription/content workflows, internal tooling). Comfortable
-owning a feature end to end — design, backend, deploy.
+Software engineer. I build production web and mobile apps, plus APIs and AI-powered automation
+pipelines: LLM integrations, transcription and content workflows, internal tooling. I like
+owning a feature end to end, from design through backend to deploy.
 
 ### currently shipping
 

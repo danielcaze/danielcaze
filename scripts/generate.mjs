@@ -145,11 +145,11 @@ function field(x, y, label, value, rowChars) {
 function header(x, y, text, rowChars) {
   // plain hyphens, not em dash: em dash renders wider than a monospace cell in
   // some SVG engines, which made the rule fall short of the field rows below it
-  const fixed = " ---";
+  const fixed = " -----";
   const ruleWidth = Math.max(3, rowChars - text.length - fixed.length);
   const rule = "-".repeat(ruleWidth);
-  const plain = `${text} -${rule}--`;
-  const svg = `<tspan x="${x}" y="${y}">${esc(text)}</tspan> -${rule}--`;
+  const plain = `${text} -${rule}----`;
+  const svg = `<tspan x="${x}" y="${y}">${esc(text)}</tspan> -${rule}----`;
   return { svg, len: plain.length };
 }
 
@@ -177,11 +177,14 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
 
   const artTspans = clippedArt.map((line, i) => `<tspan x="${marginX}" y="${30 + i * lineH}">${esc(line)}</tspan>`).join("\n");
 
+  const CAREER_START = new Date("2021-01-01T00:00:00Z");
+  const uptimeYears = Math.floor((Date.now() - CAREER_START) / (365.25 * 24 * 60 * 60 * 1000));
+
   const fields = [
     ["OS", "Windows 11"],
     ["Host", "Brazil (Remote)"],
     ["Kernel", "Software Engineer"],
-    ["Uptime", "5+ years"],
+    ["Uptime", `${uptimeYears}+ years`],
     ["IDE", "VSCode"],
   ];
   const langFields = [
@@ -189,7 +192,7 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
     ["Frameworks.Frontend", "Next.js, Angular, React Native"],
     ["Frameworks.Backend", "NestJS"],
     ["Databases", "PostgreSQL, MySQL"],
-    ["Infra", "Docker, AWS, Azure"],
+    ["Infra", "Docker, AWS, Azure, GCP"],
     ["Languages.Real", "Portuguese, English"],
   ];
   const hobbies = [["Hobbies", "Surfing, Music, Exercise"]];
@@ -241,18 +244,30 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   // card (rowChars). The second field on each of the first two lines (Stars /
   // Followers) starts at the SAME x — a real column, Stars directly above Followers —
   // and its dots absorb the remaining space so the line fills the full block width.
-  const shortDots = "....";
   const contribSuffix = contributed > 0 ? ` {Contributed: ${fmt(contributed)}}` : "";
 
-  // bar ("|") column is fixed independent of contributed being shown, so it lines
-  // up vertically between the two stats rows no matter how long line 1 gets
-  const beforeBar1 = `. Repos: ${shortDots} ${fmt(repos)}${contribSuffix}`;
-  const beforeBar2 = `. Commits: ${shortDots} ${fmt(commits)}`;
-  const barCol = Math.max(beforeBar1.length, beforeBar2.length);
-  const pad1 = " ".repeat(barCol - beforeBar1.length);
-  const pad2 = " ".repeat(barCol - beforeBar2.length);
-  const line1LeftPlain = beforeBar1 + pad1 + "  |  ";
-  const line2LeftPlain = beforeBar2 + pad2 + "  |  ";
+  // "Repos:" and "Commits:" differ in length, so pad the shorter label to match —
+  // otherwise their dots/values start at different columns
+  const labelCol = Math.max("Repos:".length, "Commits:".length);
+  const reposLabelPad = " ".repeat(labelCol - "Repos:".length);
+  const commitsLabelPad = " ".repeat(labelCol - "Commits:".length);
+
+  // dots are sized per line (like every other field) so the VALUE's right edge —
+  // not just where the dots start — lands on the same column for both rows
+  const reposPrefix = `. Repos:${reposLabelPad} `;
+  const commitsPrefix = `. Commits:${commitsLabelPad} `;
+  const reposValuePart = `${fmt(repos)}${contribSuffix}`;
+  const commitsValuePart = `${fmt(commits)}`;
+  const barCol = Math.max(
+    reposPrefix.length + 3 + 1 + reposValuePart.length,
+    commitsPrefix.length + 3 + 1 + commitsValuePart.length
+  );
+  const reposDots = ".".repeat(barCol - reposPrefix.length - 1 - reposValuePart.length);
+  const commitsDots = ".".repeat(barCol - commitsPrefix.length - 1 - commitsValuePart.length);
+  const beforeBar1 = `${reposPrefix}${reposDots} ${reposValuePart}`;
+  const beforeBar2 = `${commitsPrefix}${commitsDots} ${commitsValuePart}`;
+  const line1LeftPlain = beforeBar1 + "  |  ";
+  const line2LeftPlain = beforeBar2 + "  |  ";
   const colStart = line1LeftPlain.length;
 
   const starsPrefixLen = colStart + "Stars: ".length;
@@ -261,12 +276,12 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   const followersDots = ".".repeat(Math.max(3, rowChars - followersPrefixLen - fmt(followers).length));
 
   const contribSvg = contributed > 0 ? ` {<tspan class="key">Contributed</tspan>: <tspan class="value">${fmt(contributed)}</tspan>}` : "";
-  const statsLine1 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> ${shortDots} </tspan><tspan class="value">${fmt(repos)}</tspan>${contribSvg}<tspan class="cc">${pad1}  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> ${starsDots} </tspan><tspan class="value">${fmt(stars)}</tspan>`;
+  const statsLine1 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc">${reposLabelPad} ${reposDots} </tspan><tspan class="value">${fmt(repos)}</tspan>${contribSvg}<tspan class="cc">  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> ${starsDots} </tspan><tspan class="value">${fmt(stars)}</tspan>`;
   lines.push(statsLine1);
   maxLen = Math.max(maxLen, (line1LeftPlain + "Stars: " + starsDots + " " + fmt(stars)).length);
   y += lineH;
 
-  const statsLine2 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ${shortDots} </tspan><tspan class="value">${fmt(commits)}</tspan><tspan class="cc">${pad2}  |  </tspan><tspan class="key">Followers</tspan>:<tspan class="cc"> ${followersDots} </tspan><tspan class="value">${fmt(followers)}</tspan>`;
+  const statsLine2 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc">${commitsLabelPad} ${commitsDots} </tspan><tspan class="value">${fmt(commits)}</tspan><tspan class="cc">  |  </tspan><tspan class="key">Followers</tspan>:<tspan class="cc"> ${followersDots} </tspan><tspan class="value">${fmt(followers)}</tspan>`;
   lines.push(statsLine2);
   maxLen = Math.max(maxLen, (line2LeftPlain + "Followers: " + followersDots + " " + fmt(followers)).length);
   y += lineH;
