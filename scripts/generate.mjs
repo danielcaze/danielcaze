@@ -244,6 +244,8 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   // card (rowChars). The second field on each of the first two lines (Stars /
   // Followers) starts at the SAME x — a real column, Stars directly above Followers —
   // and its dots absorb the remaining space so the line fills the full block width.
+  // contributed rides at the END of line 1 (after Stars), never inside the
+  // left segment — so it can't push the bar off center
   const contribSuffix = contributed > 0 ? ` {Contributed: ${fmt(contributed)}}` : "";
 
   // "Repos:" and "Commits:" differ in length, so pad the shorter label to match —
@@ -252,18 +254,20 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   const reposLabelPad = " ".repeat(labelCol - "Repos:".length);
   const commitsLabelPad = " ".repeat(labelCol - "Commits:".length);
 
-  // dots are sized per line (like every other field) so the VALUE's right edge —
-  // not just where the dots start — lands on the same column for both rows
+  // bar sits at the midpoint of the row width, fixed regardless of contributed —
+  // dots are sized per line so the VALUE's right edge lands exactly there
   const reposPrefix = `. Repos:${reposLabelPad} `;
   const commitsPrefix = `. Commits:${commitsLabelPad} `;
-  const reposValuePart = `${fmt(repos)}${contribSuffix}`;
+  const reposValuePart = `${fmt(repos)}`;
   const commitsValuePart = `${fmt(commits)}`;
-  const barCol = Math.max(
+  const midCol = Math.max(
+    3,
+    Math.round(rowChars / 2),
     reposPrefix.length + 3 + 1 + reposValuePart.length,
     commitsPrefix.length + 3 + 1 + commitsValuePart.length
   );
-  const reposDots = ".".repeat(barCol - reposPrefix.length - 1 - reposValuePart.length);
-  const commitsDots = ".".repeat(barCol - commitsPrefix.length - 1 - commitsValuePart.length);
+  const reposDots = ".".repeat(midCol - reposPrefix.length - 1 - reposValuePart.length);
+  const commitsDots = ".".repeat(midCol - commitsPrefix.length - 1 - commitsValuePart.length);
   const beforeBar1 = `${reposPrefix}${reposDots} ${reposValuePart}`;
   const beforeBar2 = `${commitsPrefix}${commitsDots} ${commitsValuePart}`;
   const line1LeftPlain = beforeBar1 + "  |  ";
@@ -276,9 +280,9 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   const followersDots = ".".repeat(Math.max(3, rowChars - followersPrefixLen - fmt(followers).length));
 
   const contribSvg = contributed > 0 ? ` {<tspan class="key">Contributed</tspan>: <tspan class="value">${fmt(contributed)}</tspan>}` : "";
-  const statsLine1 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc">${reposLabelPad} ${reposDots} </tspan><tspan class="value">${fmt(repos)}</tspan>${contribSvg}<tspan class="cc">  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> ${starsDots} </tspan><tspan class="value">${fmt(stars)}</tspan>`;
+  const statsLine1 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc">${reposLabelPad} ${reposDots} </tspan><tspan class="value">${fmt(repos)}</tspan><tspan class="cc">  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> ${starsDots} </tspan><tspan class="value">${fmt(stars)}</tspan>${contribSvg}`;
   lines.push(statsLine1);
-  maxLen = Math.max(maxLen, (line1LeftPlain + "Stars: " + starsDots + " " + fmt(stars)).length);
+  maxLen = Math.max(maxLen, (line1LeftPlain + "Stars: " + starsDots + " " + fmt(stars) + contribSuffix).length);
   y += lineH;
 
   const statsLine2 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc">${commitsLabelPad} ${commitsDots} </tspan><tspan class="value">${fmt(commits)}</tspan><tspan class="cc">  |  </tspan><tspan class="key">Followers</tspan>:<tspan class="cc"> ${followersDots} </tspan><tspan class="value">${fmt(followers)}</tspan>`;
