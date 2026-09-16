@@ -183,15 +183,15 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   const fields = [
     ["OS", "Windows 11"],
     ["Host", "Brazil (Remote)"],
-    ["Kernel", "Software Engineer"],
+    ["Kernel", "Full-Stack Software Engineer"],
     ["Uptime", `${uptimeYears}+ years`],
     ["IDE", "VSCode"],
   ];
   const langFields = [
-    ["Languages.Programming", "TypeScript, JavaScript, Go"],
-    ["Frameworks.Frontend", "Next.js, Angular, React Native"],
-    ["Frameworks.Backend", "NestJS"],
-    ["Databases", "PostgreSQL, MySQL"],
+    ["Languages.Programming", "TypeScript, JavaScript, Go, SQL"],
+    ["Frameworks.Frontend", "Angular, React, Next.js, React Native"],
+    ["Frameworks.Backend", "NestJS, Fastify, Express"],
+    ["Databases", "PostgreSQL, MySQL, Firestore, Redis"],
     ["Infra", "Docker, AWS, Azure, GCP"],
     ["Languages.Real", "Portuguese, English"],
   ];
@@ -244,8 +244,9 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   // card (rowChars). The second field on each of the first two lines (Stars /
   // Followers) starts at the SAME x — a real column, Stars directly above Followers —
   // and its dots absorb the remaining space so the line fills the full block width.
-  // contributed rides at the END of line 1 (after Stars), never inside the
-  // left segment — so it can't push the bar off center
+  // contributed sits in the LEFT segment of line 1, directly after the Repos
+  // value and before the bar. Its width is absorbed by the Repos dots, so the
+  // Repos number simply shifts left and the bar stays on the same column.
   const contribSuffix = contributed > 0 ? ` {Contributed: ${fmt(contributed)}}` : "";
 
   // "Repos:" and "Commits:" differ in length, so pad the shorter label to match —
@@ -263,12 +264,12 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   const midCol = Math.max(
     3,
     Math.round(rowChars / 2),
-    reposPrefix.length + 3 + 1 + reposValuePart.length,
+    reposPrefix.length + 3 + 1 + reposValuePart.length + contribSuffix.length,
     commitsPrefix.length + 3 + 1 + commitsValuePart.length
   );
-  const reposDots = ".".repeat(midCol - reposPrefix.length - 1 - reposValuePart.length);
+  const reposDots = ".".repeat(midCol - reposPrefix.length - 1 - reposValuePart.length - contribSuffix.length);
   const commitsDots = ".".repeat(midCol - commitsPrefix.length - 1 - commitsValuePart.length);
-  const beforeBar1 = `${reposPrefix}${reposDots} ${reposValuePart}`;
+  const beforeBar1 = `${reposPrefix}${reposDots} ${reposValuePart}${contribSuffix}`;
   const beforeBar2 = `${commitsPrefix}${commitsDots} ${commitsValuePart}`;
   const line1LeftPlain = beforeBar1 + "  |  ";
   const line2LeftPlain = beforeBar2 + "  |  ";
@@ -280,9 +281,9 @@ function card({ repos, stars, commits, followers, contributed, loc, theme }) {
   const followersDots = ".".repeat(Math.max(3, rowChars - followersPrefixLen - fmt(followers).length));
 
   const contribSvg = contributed > 0 ? ` {<tspan class="key">Contributed</tspan>: <tspan class="value">${fmt(contributed)}</tspan>}` : "";
-  const statsLine1 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc">${reposLabelPad} ${reposDots} </tspan><tspan class="value">${fmt(repos)}</tspan><tspan class="cc">  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> ${starsDots} </tspan><tspan class="value">${fmt(stars)}</tspan>${contribSvg}`;
+  const statsLine1 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc">${reposLabelPad} ${reposDots} </tspan><tspan class="value">${fmt(repos)}</tspan>${contribSvg}<tspan class="cc">  |  </tspan><tspan class="key">Stars</tspan>:<tspan class="cc"> ${starsDots} </tspan><tspan class="value">${fmt(stars)}</tspan>`;
   lines.push(statsLine1);
-  maxLen = Math.max(maxLen, (line1LeftPlain + "Stars: " + starsDots + " " + fmt(stars) + contribSuffix).length);
+  maxLen = Math.max(maxLen, (line1LeftPlain + "Stars: " + starsDots + " " + fmt(stars)).length);
   y += lineH;
 
   const statsLine2 = `<tspan x="${rightX}" y="${y}" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc">${commitsLabelPad} ${commitsDots} </tspan><tspan class="value">${fmt(commits)}</tspan><tspan class="cc">  |  </tspan><tspan class="key">Followers</tspan>:<tspan class="cc"> ${followersDots} </tspan><tspan class="value">${fmt(followers)}</tspan>`;
